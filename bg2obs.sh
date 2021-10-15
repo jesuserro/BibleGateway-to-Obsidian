@@ -50,15 +50,16 @@ do
 	esac
 done
 
-# Initialize variables
-book_counter=0 # Setting the counter to 0
-book_counter_max=66 # Setting the max amount to 66, since there are 66 books we want to import
-
 # Book list
 declare -a bookarray # Declaring the Books of the Bible as a list
 bookarray=(Genesis Exodus Leviticus Numbers Deuteronomy Joshua Judges Ruth "1 Samuel" "2 Samuel" "1 Kings" "2 Kings" "1 Chronicles" "2 Chronicles" Ezra Nehemiah Esther Job Psalms Proverbs Ecclesiastes "Song of Solomon" Isaiah Jeremiah Lamentations Ezekiel Daniel Hosea Joel Amos Obadiah Jonah Micah Nahum Habakkuk Zephaniah Haggai Zechariah Malachi Matthew Mark Luke John Acts Romans "1 Corinthians" "2 Corinthians" Galatians Ephesians Philippians Colossians "1 Thessalonians" "2 Thessalonians" "1 Timothy" "2 Timothy" Titus Philemon Hebrews James "1 Peter" "2 Peter" "1 John" "2 John" "3 John" Jude Revelation)
 declare -a bookarray_es # Declaring the Books of the Bible as a list
 bookarray_es=(Génesis Éxodo Levítico Números Deuteronomio Josué Jueces Rut "1 Samuel" "2 Samuel" "1 Reyes" "2 Reyes" "1 Crónicas" "2 Crónicas" Esdras Nehemías Tobías Judit Ester "1 Macabeos" "2 Macabeos" Job Salmos Proverbios Eclesiastés "Cantar de los Cantares" Sabiduría "Eclesiástico (Sirácida)" Isaías Jeremías Lamentaciones Ezequiel Daniel Oseas Joel Amós Abdías Jonás Miqueas Nahum Habacuc Sofonías Ageo Zacarías Malaquías "San Mateo" "San Marcos" "San Lucas" "San Juan" Hechos Romanos "1 Corintios" "2 Corintios" Gálatas Efesios Filipenses Colosenses "1 Tesalonicenses" "2 Tesalonicenses" "1 Timoteo" "2 Timoteo" Tito Filemón Hebreos Santiago "1 Pedro" "2 Pedro" "1 Juan" "2 Juan" "3 Juan" Judas Apocalipsis)
+
+
+# Initialize variables
+book_counter=0 # Setting the counter to 0
+book_counter_max=${#bookarray_es[@]} # Setting the max amount to 72, since there are 72 books we want to import
 
 # Book chapter list
 declare -a lengtharray # Declaring amount of chapters in each book
@@ -76,14 +77,20 @@ abbarray_es=(Gn Ex Lv Nm Dt Jos Jc Rt "1 S" "2 S" "1 R" "2 R" "1 Cro" "2 Cro" Es
 declare -a bookarray_test
 bookarray_test=(Genesis)
 declare -a lengtharray_test
-lengtharray_test=(2)
+lengtharray_test=(1)
 declare -a abbarray_test
 abbarray_test=(Gn)
 
 # Asignación de array para ejecución
-bookarray=${bookarray_es}
-lengtharray=${lengtharray_es}
-abbarray=${abbarray_es}
+# bookarray=$bookarray_test
+# lengtharray=$lengtharray_test
+# abbarray=$abbarray_test
+
+ # echo ${#bookarray_es[@]}
+ # echo ${#lengtharray_es[@]}
+ # echo ${#abbarray_es[@]}
+ # exit 1
+
 
 
 # Ejecución
@@ -99,9 +106,9 @@ fi
 		echo ""   # Make a new line which the '-n' flag to the echo command prevents.
 	fi
 
-    book=${bookarray[$book_counter]}
-    maxchapter=${lengtharray[$book_counter]}
-    abbreviation=${abbarray[$book_counter]}
+    book=${bookarray_es[$book_counter]}
+    maxchapter=${lengtharray_es[$book_counter]}
+    abbreviation=${abbarray_es[$book_counter]}
 
 	if ${verbose} -eq "true"; then
 		echo -n "${book} "
@@ -241,6 +248,9 @@ if ${verbose} -eq "true"; then
 fi
 # Clear unnecessary headers
 find . -name "*.md" -print0 | xargs -0 perl -pi -e 's/#.*(#####\D[1]\D)/#$1/g'
+
+# Clear text: Más información sobre la Reina-Valera 1960
+find . -name "*.md" -print0 | xargs -0 perl -pi -e 's/Más información sobre la Reina-Valera 1960//g'
 
 # Format verses into H6 headers
 find . -name "*.md" -print0 | xargs -0 perl -pi -e 's/######\s([0-9]\s|[0-9][0-9]\s|[0-9][0-9][0-9]\s)/\n\n###### v$1\n/g'
