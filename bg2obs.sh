@@ -54,24 +54,24 @@ done
 declare -a bookarray # Declaring the Books of the Bible as a list
 bookarray=(Genesis Exodus Leviticus Numbers Deuteronomy Joshua Judges Ruth "1 Samuel" "2 Samuel" "1 Kings" "2 Kings" "1 Chronicles" "2 Chronicles" Ezra Nehemiah Esther Job Psalms Proverbs Ecclesiastes "Song of Solomon" Isaiah Jeremiah Lamentations Ezekiel Daniel Hosea Joel Amos Obadiah Jonah Micah Nahum Habakkuk Zephaniah Haggai Zechariah Malachi Matthew Mark Luke John Acts Romans "1 Corinthians" "2 Corinthians" Galatians Ephesians Philippians Colossians "1 Thessalonians" "2 Thessalonians" "1 Timothy" "2 Timothy" Titus Philemon Hebrews James "1 Peter" "2 Peter" "1 John" "2 John" "3 John" Jude Revelation)
 declare -a bookarray_es # Declaring the Books of the Bible as a list
-bookarray_es=(Génesis Éxodo Levítico Números Deuteronomio Josué Jueces Rut "1 Samuel" "2 Samuel" "1 Reyes" "2 Reyes" "1 Crónicas" "2 Crónicas" Esdras Nehemías Tobías Judit Ester "1 Macabeos" "2 Macabeos" Job Salmos Proverbios Eclesiastés "Cantar de los Cantares" Sabiduría "Eclesiástico (Sirácida)" Isaías Jeremías Lamentaciones Ezequiel Daniel Oseas Joel Amós Abdías Jonás Miqueas Nahum Habacuc Sofonías Ageo Zacarías Malaquías "San Mateo" "San Marcos" "San Lucas" "San Juan" Hechos Romanos "1 Corintios" "2 Corintios" Gálatas Efesios Filipenses Colosenses "1 Tesalonicenses" "2 Tesalonicenses" "1 Timoteo" "2 Timoteo" Tito Filemón Hebreos Santiago "1 Pedro" "2 Pedro" "1 Juan" "2 Juan" "3 Juan" Judas Apocalipsis)
+bookarray_es=(Génesis Éxodo Levítico Números Deuteronomio Josué Jueces Rut "1 Samuel" "2 Samuel" "1 Reyes" "2 Reyes" "1 Crónicas" "2 Crónicas" Esdras Nehemías Tobías Judit Ester "1 Macabeos" "2 Macabeos" Job Salmos Proverbios Eclesiastés "Cantar de los Cantares" Sabiduría Sirácida Isaías Jeremías Lamentaciones Baruc Ezequiel Daniel Oseas Joel Amós Abdías Jonás Miqueas Nahum Habacuc Sofonías Ageo Zacarías Malaquías "San Mateo" "San Marcos" "San Lucas" "San Juan" "Hechos de los Apóstoles" Romanos "1 Corintios" "2 Corintios" Gálatas Efesios Filipenses Colosenses "1 Tesalonicenses" "2 Tesalonicenses" "1 Timoteo" "2 Timoteo" Tito Filemón Hebreos Santiago "1 Pedro" "2 Pedro" "1 Juan" "2 Juan" "3 Juan" Judas Apocalipsis)
 
 
 # Initialize variables
 book_counter=0 # Setting the counter to 0
-book_counter_max=${#bookarray_es[@]} # Setting the max amount to 72, since there are 72 books we want to import
+book_counter_max=${#bookarray_es[@]} # Setting the max amount to 73, since there are 73 books we want to import
 
 # Book chapter list
 declare -a lengtharray # Declaring amount of chapters in each book
 lengtharray=(50 40 27 36 34 24 21 4 31 24 22 25 29 36 10 13 10 42 150 31 12 8 66 52 5 48 12 14 3 9 1 4 7 3 3 3 2 14 4 28 16 24 21 28 16 16 13 6 6 4 4 5 3 6 4 3 1 13 5 5 3 5 1 1 1 22)
 declare -a lengtharray_es # Declaring amount of chapters in each book
-lengtharray_es=(50 40 27 36 34 24 21 4 31 24 22 25 29 36 10 13 14 16 10 16 15 42 150 31 12 8 19 51 66 52 5 48 12 14 3 9 1 4 7 3 3 3 2 14 4 28 16 24 21 28 16 16 13 6 6 4 4 5 3 6 4 3 1 13 5 5 3 5 1 1 1 22)
+lengtharray_es=(50 40 27 36 34 24 21 4 31 24 22 25 29 36 10 13 14 16 10 16 15 42 150 31 12 8 19 51 66 52 5 6 48 12 14 3 9 1 4 7 3 3 3 2 14 4 28 16 24 21 28 16 16 13 6 6 4 4 5 3 6 4 3 1 13 5 5 3 5 1 1 1 22)
 
 # Abbreviation list
 declare -a abbarray # Delaring the abbreviations for each book. You can adapt if you'd like
 abbarray=(Gen Exod Lev Num Deut Josh Judg Ruth "1 Sam" "2 Sam" "1 Kings" "2 Kings" "1 Chron" "2 Chron" Ezr Neh Esth Job Ps Prov Eccles Song Isa Jer Lam Ezek Dan Hos Joel Am Obad Jonah Micah Nah Hab Zeph Hag Zech Mal Matt Mark Luke John Acts Rom "1 Cor" "2 Cor" Gal Ephes Phil Col "1 Thess" "2 Thess" "1 Tim" "2 Tim" Titus Philem Heb James "1 Pet" "2 Pet" "1 John" "2 John" "3 John" Jude Rev)
 declare -a abbarray_es # Delaring the abbreviations for each book. You can adapt if you'd like
-abbarray_es=(Gn Ex Lv Nm Dt Jos Jc Rt "1 S" "2 S" "1 R" "2 R" "1 Cro" "2 Cro" Esd Ne Tb Jdt Est "1 M" "2 M" Jb Sal Pr Qo Ct Sb Si Is Jr Lm Ez Dn Os Jl Am Ab Jon Mi Na Ha So Ag Za Ml Mt Mc Lc Jn Hch Rm "1 Co" "2 Co" Ga Ef Flp Col "1 Ts" "2 Ts" "1 Tm" "2 Tm" Tt Flm Hb St "1 P" "2 P" "1 Jn" "2 Jn" "3 Jn" Jds Ap)
+abbarray_es=(Gn Ex Lv Nm Dt Jos Jc Rt "1 S" "2 S" "1 R" "2 R" "1 Cro" "2 Cro" Esd Ne Tb Jdt Est "1 M" "2 M" Jb Sal Pr Qo Ct Sb Si Is Jr Lm Ba Ez Dn Os Jl Am Ab Jon Mi Na Ha So Ag Za Ml Mt Mc Lc Jn Hch Rm "1 Co" "2 Co" Ga Ef Flp Col "1 Ts" "2 Ts" "1 Tm" "2 Tm" Tt Flm Hb St "1 P" "2 P" "1 Jn" "2 Jn" "3 Jn" Jds Ap)
 
 # Test arrays
 declare -a bookarray_test
@@ -212,7 +212,7 @@ filename=${export_prefix}$export_number # Setting the filename
 done # End of the book exporting loop
 
   # Create an overview file for each book of the Bible:
-  overview_file="links: [[The Bible]]\n# ${book}\n\n[[${abbreviation}-01|Start Reading →]]"
+  overview_file="links: [[Biblia]]\n# ${book}\n\n[[${abbreviation}-01|Start Reading →]]"
   echo -e $overview_file >> "$book.md"
   #mkdir -p ./Scripture ("${translation}")/"${folder_name}"; mv "$book.md" './Scripture ('"${translation}"')/'"${folder_name}"
   mv "$book.md" './Scripture ('"${translation}"')/'"${folder_name}"
